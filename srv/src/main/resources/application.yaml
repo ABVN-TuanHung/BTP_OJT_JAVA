@@ -6,6 +6,13 @@ spring:
 cds:
   data-source.auto-config.enabled: false
 ---
+spring:
+  config.activate.on-profile: cloud
+cds:
+  data:
+    db:
+      vcapp: true
+---
 management:
   endpoint:
     health:
