@@ -1,0 +1,18 @@
+{
+  "generator-ui5-app": {
+    "namespace": "employeemgm",
+    "framework": "SAPUI5",
+    "frameworkVersion": "1.136.2",
+    "author": "ABVN-Hunguyen",
+    "initrepo": false,
+    "appId": "employeemgm",
+    "appURI": "employeemgm",
+    "cdnDomain": "ui5.sap.com",
+    "defaultTheme": "sap_horizon",
+    "qunitCoverageFile": "qunit-coverage-istanbul.js",
+    "gte1_98_0": true,
+    "gte1_104_0": true,
+    "lt1_124_0": false,
+    "setupCompleted": true
+  }
+}
