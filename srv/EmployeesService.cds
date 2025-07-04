@@ -5,11 +5,11 @@ using {db as my} from '../db/schema';
 @restrict: [
     {
         grant: 'READ',
-        to   : 'Viewer'
+        to   : 'Viewer_JAV'
     },
     {
         grant: '*',
-        to   : 'Admin'
+        to   : 'Admin_JAV'
     }
 ]
 service EmployeesService {
