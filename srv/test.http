@@ -1,0 +1,4 @@
+@baseUrl = https://port8080-workspaces-ws-b5246.us10.trial.applicationstudio.cloud.sap/odata/v4
+
+### GET Roles
+GET {{baseUrl}}/OJT/EmpSrv/Roles
