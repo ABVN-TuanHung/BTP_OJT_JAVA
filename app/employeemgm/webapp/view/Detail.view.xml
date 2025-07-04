@@ -1,0 +1,254 @@
+<mvc:View
+    controllerName="employeemgm.controller.Detail"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    core:require="{
+		formatter: 'employeemgm/model/formatter'
+	}">
+
+    <Page
+        title="{i18n>detailTitle}"
+        id="DetailPage">
+        <Button
+            id="btnBack"
+            text="{formatter: 'formatter.formatValue', path: 'i18n>btnDetail'}"
+            press=".onSeeListView"
+            class="sapUiSmallMargin" />
+
+        <!-- BODY -->
+        <VBox id="HomeVB" alignItems="Center">
+
+            <Panel id="HomePanel" headerText="Employee Information">
+
+                <!-- 1st row: Name and avatar -->
+                <FlexBox id="HomeFB1"
+                    direction="Row" alignItems="End" gap="30px" width="100%"
+                    height="auto" justifyContent="Center" class="sapUiSmallMarginTop">
+                    <!-- Row1 Item 1 -->
+                    <VBox id="HomeVBFirstName"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFBi1" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBName" text="First Name" labelFor="HomeIPFirstName"
+                                width="7em" />
+                            <Input
+                                id="HomeIPFirstName"
+                                placeholder="Enter first name"
+                                width="10em"
+                                value="{oEmpDetail>/firstName}"
+                                editable="{oEmpDetail>/isEditable}"
+                            />
+                        </FlexBox>
+                    </VBox>
+                    <!-- Row1 Item2 -->
+                    <VBox id="HomeVBLastName"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFBi2" direction="Row" alignItems="Center" gap="2em">
+                            <Label id="HomeLBAvatar" text="Last Name" labelFor="HomeIPLastName"
+                                class="sapUiTinyMarginTop" width="7em" />
+                            <Input
+                                id="HomeIPLastName"
+                                placeholder="Enter first name"
+                                width="10em"
+                                value="{oEmpDetail>/lastName}"
+                                editable="{oEmpDetail>/isEditable}"
+                            />
+                        </FlexBox>
+                    </VBox>
+                </FlexBox>
+
+                <!-- 2nd row: Gender and DOB -->
+                <FlexBox id="HomeFB2"
+                    direction="Row" alignItems="Center" gap="30px" width="100%"
+                    height="auto" justifyContent="Center" class="sapUiSmallMarginTop">
+                    <!-- Row2 Item 1 -->
+                    <VBox id="HomeVBGender"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB2i1" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBGender" text="Gender" labelFor="HomeCBGender"
+                                width="7em"
+                                class="sapUiTinyMarginTop" />
+                            <ComboBox id="HomeCBGender"
+                                change="onComboGenderChange" width="10em"
+                                editable="{oEmpDetail>/isEditable}"
+                                value="{oEmpDetail>/gender}">
+                                <items>
+                                    <core:Item id="CBMale" key="M" text="M" />
+                                    <core:Item id="CBFemale" key="F" text="F" />
+                                </items>
+                            </ComboBox>
+                        </FlexBox>
+                    </VBox>
+                    <!-- Row2 Item2 -->
+                    <VBox id="HomeVBDOB"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB2i2" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBDOB" text="Date of Birth" labelFor="HomeIPDOB"
+                                width="7em"
+                                class="sapUiTinyMarginTop" />
+                            <DatePicker
+                                id="HomeIPDOB"
+                                placeholder="Enter Date"
+                                width="10em"
+                                value="{oEmpDetail>/dateOfBirth}"
+                                editable="{oEmpDetail>/isEditable}" />
+                        </FlexBox>
+                    </VBox>
+                </FlexBox>
+
+                <!-- 3rd row: Department and Working From -->
+                <FlexBox id="HomeFB3"
+                    direction="Row" alignItems="Center" gap="30px" width="100%"
+                    height="auto" justifyContent="Center" class="sapUiSmallMarginTop">
+                    <!-- Row3 Item 1 -->
+                    <VBox id="HomeVBDept"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB3i1" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBDept" text="Department" labelFor="HomeCBDept"
+                                class="sapUiTinyMarginTop" width="7em" />
+                            <ComboBox id="HomeCBDept" width="10em"
+                                change="onComboDeptChange" editable="{oEmpDetail>/isEditable}"
+                                items="{oDeptList>/rows}"
+                                value="{oEmpDetail>/department}">
+                                <items>
+                                    <core:Item id="DeptIdDetail" key="{oDeptList>ID}"
+                                        text="{oDeptList>name}" />
+                                </items>
+                            </ComboBox>
+                        </FlexBox>
+                    </VBox>
+                    <!-- Row3 Item2 -->
+                    <VBox id="HomeVBWF"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB3i2" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBWF" text="Working From" labelFor="HomeIPWF" width="7em"
+                                class="sapUiTinyMarginTop" />
+                            <DatePicker
+                                id="HomeIPWF"
+                                placeholder="Enter Date"
+                                width="10em"
+                                value="{oEmpDetail>/hireDate}"
+                                editable="{oEmpDetail>/isEditable}" />
+                        </FlexBox>
+                    </VBox>
+                </FlexBox>
+
+                <!-- 4rd row:Level and Email -->
+                <FlexBox id="HomeFB4"
+                    direction="Row" alignItems="Center" gap="30px" width="100%"
+                    height="auto" justifyContent="Center" class="sapUiSmallMarginTop">
+                    <!-- Row4 Item 1 -->
+                    <VBox id="HomeVBLevel"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB4i1" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBRole" text="Role" labelFor="HomeIPRole"
+                                class="sapUiTinyMarginTop" width="7em" />
+                            <ComboBox id="HomeIPRole" width="10em"
+                                change="onComboDeptChange" editable="{oEmpDetail>/isEditable}"
+                                items="{oRoleList>/rows}"
+                                value="{oEmpDetail>/role}">
+                                <items>
+                                    <core:Item id="RoleIdDetail" key="{oRoleList>ID}"
+                                        text="{oRoleList>name}" />
+                                </items>
+                            </ComboBox>
+                        </FlexBox>
+                    </VBox>
+                    <!-- Row4 Item2 -->
+                    <VBox id="HomeVBEmail"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="HomeFB4i2" direction="Row" alignItems="Center" gap="2em"
+                            width="100%"
+                            justifyContent="Center">
+                            <Label id="HomeLBEmail" text="Email" labelFor="HomeIPEmail" width="7em"
+                                class="sapUiTinyMarginTop" />
+                            <Input
+                                id="HomeIPEmail"
+                                type="Email"
+                                placeholder="Enter a valid Email"
+                                width="10em"
+                                change="onEmailChange"
+                                value="{oEmpDetail>/email}"
+                                editable="{oEmpDetail>/isEditable}"
+                            />
+                        </FlexBox>
+                    </VBox>
+                </FlexBox>
+
+                <!-- 5th row:Level and Email -->
+                <FlexBox id="HomeFB5"
+                    direction="Row" alignItems="Center" gap="30px" width="100%"
+                    height="auto" justifyContent="Center" class="sapUiSmallMarginTop">
+                    <!-- Row4 Item 1 -->
+                    <VBox id="HomeVBCert"
+                        width="100%"
+                        height="auto">
+                        <FlexBox id="HomeFB5i1" direction="Row" gap="2em"
+                            width="100%">
+                            <Label id="HomeLBSalary" text="Salary" labelFor="HomeIPSalary"
+                                class="sapUiTinyMarginTop" width="7em" />
+                            <Input
+                                id="HomeIPSalary"
+                                placeholder="Enter Salary"
+                                width="10em"
+                                value="{oEmpDetail>/salary}"
+                                editable="{oEmpDetail>/isEditable}"
+                            />
+                        </FlexBox>
+                    </VBox>
+                </FlexBox>
+
+                <!-- Last row: Submit Button -->
+                <FlexBox id="HomeFB6" direction="RowReverse">
+                    <!-- Row2 Item 1 -->
+                    <Button id="HomeSubmit" type="Success" text="Submit" class="sapUiSmallMargin"
+                        press=".onSubmit" visible="{oEmpDetail>/isEditable}" />
+                    <Button id="HomeCalculate" type="Emphasized" text="Calculate salary"
+                        class="sapUiSmallMargin"
+                        press=".onCalculateSalary" visible="{oEmpDetail>/isEditable}" />
+                </FlexBox>
+
+            </Panel>
+
+        </VBox>
+
+    </Page>
+
+</mvc:View>

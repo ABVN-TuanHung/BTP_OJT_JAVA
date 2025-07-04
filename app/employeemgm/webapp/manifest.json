@@ -73,12 +73,35 @@
 					"pattern": "",
 					"name": "main",
 					"target": "main"
+				},
+				{
+					"pattern": "Overview",
+					"name": "List",
+					"target": "list"
+				},
+				{
+					"pattern": "Detail",
+					"name": "Detail",
+					"target": "detail"
+				},
+				{
+					"pattern": "Detail/{id}",
+					"name": "DetailId",
+					"target": "detail"
 				}
 			],
 			"targets": {
 				"main": {
 					"viewId": "main",
 					"viewName": "Main"
+				},
+				"list": {
+					"viewId": "List",
+					"viewName": "List"
+				},
+				"detail": {
+					"viewId": "Detail",
+					"viewName": "Detail"
 				}
 			}
 		}

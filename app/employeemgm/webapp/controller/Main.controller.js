@@ -2,8 +2,9 @@ sap.ui.define(["./BaseController", "sap/m/MessageBox"], function (BaseController
 	"use strict";
 
 	return BaseController.extend("employeemgm.controller.Main", {
-		sayHello: function () {
-			MessageBox.show("Hello World!");
+		onSeeListView: function () {
+			const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("List");
 		}
 	});
 });

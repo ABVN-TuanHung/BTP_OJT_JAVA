@@ -1,0 +1,124 @@
+<mvc:View
+    controllerName="employeemgm.controller.List"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    core:require="{
+		formatter: 'employeemgm/model/formatter'
+	}">
+
+    <Page
+        title="{i18n>listTitle}"
+        id="ListPage">
+        <Button
+            id="btnNewEmp"
+            text="{formatter: 'formatter.formatValue', path: 'i18n>btnNewEmp'}"
+            press="onSeeDetail"
+            class="sapUiSmallMargin" />
+
+        <!-- BODY -->
+        <VBox id="View2VB" class="sapUiLargeMargin">
+            <Panel id="View2Panel" headerText="Employee List">
+
+                <FlexBox id="View2FB1"
+                    direction="Column" gap="1em"
+                    height="auto">
+
+                    <!-- Row1 -->
+                    <VBox id="View2VBEmail"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="View2FB4i2" direction="Row" gap="2em"
+                            width="100%">
+                            <Label id="View2LBEmail" text="Department" labelFor="View2CBDept"
+                                width="7em"
+                                class="sapUiTinyMarginTop" />
+                            <ComboBox id="View2CBDept" width="10em" items="{oDeptList>/rows}"
+                                change="onComboChange">
+                                <items>
+                                    <core:Item id="DeptId" key="{oDeptList>ID}"
+                                        text="{oDeptList>name}" />
+                                </items>
+                            </ComboBox>
+                        </FlexBox>
+                    </VBox>
+
+                    <!-- Row2 -->
+                    <VBox id="View2VBRole"
+                        width="50%"
+                        height="auto"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <FlexBox id="View2FB1i1" direction="Row" gap="2em"
+                            width="100%">
+                            <Label id="View1LBRole" text="Role" labelFor="View1CBRole"
+                                class="sapUiTinyMarginTop" width="7em" />
+                            <ComboBox id="View1CBRole" width="10em" items="{oRoleList>/rows}"
+                                change="onComboChange">
+                                <items>
+                                    <core:Item id="RoleId" key="{oRoleList>ID}"
+                                        text="{oRoleList>name}" />
+                                </items>
+                            </ComboBox>
+                        </FlexBox>
+                    </VBox>
+
+                    <!-- Row3 table -->
+                    <!-- <Table id="View2Table" items="{/rows}" mode="SingleSelectMaster"> -->
+                    <Table id="View2Table" items="{oEmpList>/rows}" mode="Delete"
+                        delete=".onDeleteRow">
+                        <columns>
+                            <Column id="ColFName">
+                                <Text id="FirstNameTxt" text="First Name" />
+                            </Column>
+                            <Column id="ColLName">
+                                <Text id="LastNameTxt" text="Last Name" />
+                            </Column>
+                            <Column id="ColGender">
+                                <Text id="GenderTxt" text="Gender" />
+                            </Column>
+                            <Column id="ColEmail">
+                                <Text id="EmailTxt" text="Email" />
+                            </Column>
+                            <Column id="ColRole">
+                                <Text id="RoleTxt" text="Role" />
+                            </Column>
+                            <Column id="ColDept">
+                                <Text id="DeptTxt" text="Department" />
+                            </Column>
+                            <Column id="ColDOB">
+                                <Text id="DOBTxt" text="Date of Birth" />
+                            </Column>
+                            <Column id="ColWF">
+                                <Text id="WFTxt" text="Working from" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <!-- <ColumnListItem id="Listitem" press=".onSelectEmployee"
+                            type="Active"> -->
+                            <ColumnListItem id="Listitem" press=".onSelectEmployee" type="Active">
+                                <cells>
+                                    <Text id="CellFirstNameTxt" text="{oEmpList>firstName}" />
+                                    <Text id="CellLastNameTxt" text="{oEmpList>lastName}" />
+                                    <Text id="CellGenderTxt" text="{oEmpList>gender}" />
+                                    <Text id="CellEmailTxt" text="{oEmpList>email}" />
+                                    <Text id="CellRoleTxt" text="{oEmpList>role}" />
+                                    <Text id="CellDeptTxt" text="{oEmpList>department}" />
+                                    <Text id="CellDOBTxt" text="{oEmpList>dateOfBirth}" />
+                                    <Text id="CellWFTxt" text="{oEmpList>hireDate}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                </FlexBox>
+
+            </Panel>
+        </VBox>
+
+    </Page>
+
+</mvc:View>
