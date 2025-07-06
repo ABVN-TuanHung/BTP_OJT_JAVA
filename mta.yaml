@@ -1,0 +1,72 @@
+_schema-version: 3.3.0
+ID: OJT_JAVA
+version: 1.0.0-SNAPSHOT
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+modules:
+  - name: OJT_JAVA-srv
+    type: java
+    path: srv
+    parameters:
+      instances: 1
+      buildpack: sap_java_buildpack_jakarta
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud,sandbox
+      JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jre.SAPMachineJRE']"
+      JBP_CONFIG_SAP_MACHINE_JRE: '{ version: 21.+ }'
+    build-parameters:
+      builder: custom
+      commands:
+        - mvn clean package -DskipTests=true --batch-mode
+      build-result: target/*-exec.jar
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: OJT_JAVA-auth
+
+  - name: OJT_JAVA
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: OJT_JAVA-auth
+      - name: html5-apps-repo-rt
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+          url: ${default-url}
+
+resources:
+  - name: OJT_JAVA-auth
+    type: org.cloudfoundry.managed-service
+    requires:
+      - name: app-api
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: OJT_JAVA-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          redirect-uris:
+            - https://~{app-api/app-uri}/**
+  - name: html5-apps-repo-rt
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime

@@ -9,23 +9,23 @@ sap.ui.define(["./BaseController", "sap/ui/model/json/JSONModel", "sap/m/Message
             },
             _onObjectMatched: async function (oEvent) {
                 // Get Employees Data
-                let oResponse = await fetch('/OJT/EmpSrv/Employees')
+                let oResponse = await fetch('odata/v4/OJT/EmpSrv/Employees')
                     .then(response => response.json())
                 if (oResponse.error) {
                     MessageBox.error(oResponse.error.message);
                     return;
                 }
                 let aEmpList = oResponse.value;
-    
+
                 // Get Roles, Departments master data
-                oResponse = await fetch('/OJT/EmpSrv/Roles')
+                oResponse = await fetch('odata/v4/OJT/EmpSrv/Roles')
                     .then(response => response.json())
                 const aRoles = oResponse.value;
-    
-                oResponse = await fetch('/OJT/EmpSrv/Departments')
+
+                oResponse = await fetch('odata/v4/OJT/EmpSrv/Departments')
                     .then(response => response.json())
                 const aDepartmens = oResponse.value;
-    
+
                 // Map employees's role and department
                 aEmpList = aEmpList.map((emp) => {
                     let role = aRoles?.find(role => role.ID === emp.role_ID)
@@ -115,7 +115,7 @@ sap.ui.define(["./BaseController", "sap/ui/model/json/JSONModel", "sap/m/Message
                     onClose: function (oAction) {
                         if (oAction === MessageBox.Action.YES) {
                             // Call API to delete employee
-                            fetch(`/OJT/EmpSrv/Employees('${oEmpPress.ID}')`, {
+                            fetch(`odata/v4/OJT/EmpSrv/Employees('${oEmpPress.ID}')`, {
                                 method: 'DELETE',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ sap.ui.define(["./BaseController", "sap/ui/model/json/JSONModel", "sap/m/Message
                                     }
                                 })
                                 .catch(err => console.error('Network or server error:', err));
-    
+
                             //Reload model
                             rows = rows?.filter(item => item.ID !== oEmpPress.ID);
                             console.log('rows', rows);
@@ -143,7 +143,7 @@ sap.ui.define(["./BaseController", "sap/ui/model/json/JSONModel", "sap/m/Message
                         }
                     }
                 });
-    
+
             },
             onSeeDetail: function () {
                 const oRouter = this.getOwnerComponent().getRouter();

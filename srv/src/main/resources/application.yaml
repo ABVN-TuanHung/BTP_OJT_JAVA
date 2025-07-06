@@ -5,13 +5,18 @@ spring:
   sql.init.platform: h2
 cds:
   data-source.auto-config.enabled: false
+  security:
+    xsuaa:
+      enabled: true
 ---
 spring:
   config.activate.on-profile: cloud
 cds:
-  data:
-    db:
-      vcapp: true
+  index-page.enabled: true
+    
+  sql.hana.search:
+    fuzzy: true
+    fuzzinessThreshold: 0.9
 ---
 management:
   endpoint:

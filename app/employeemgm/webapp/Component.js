@@ -6,7 +6,7 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], fu
 			manifest: "json",
 			interfaces: ["sap.ui.core.IAsyncContentCreation"]
 		},
-		init: function () {
+		init: async function () {
 			// call the base component's init function
 			UIComponent.prototype.init.call(this); // create the views based on the url/hash
 
@@ -15,6 +15,22 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], fu
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+
+			// enable xsuaa
+			try {
+				jQuery.sap.require(
+				  "sap.ushell.cpv2.services.cloudServices.SiteService"
+				);
+			  } catch (oException) {
+				console.log(oException);
+			  }
+
+			// enable routing
+            this.getRouter().initialize();
+            const user = await models.createUserModel();
+			const token = await models.createTokenModel();
+            this.setModel(user,'userInfo');
+            this.setModel(token,'token');
 		},
 		/**
 		 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy

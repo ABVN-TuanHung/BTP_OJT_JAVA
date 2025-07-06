@@ -1,6 +1,5 @@
 {
 	"_version": "1.12.0",
-
 	"sap.app": {
 		"id": "employeemgm",
 		"type": "application",
@@ -15,7 +14,6 @@
 			"version": "1.1.0"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {},
@@ -25,14 +23,12 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"rootView": {
 			"viewName": "employeemgm.view.App",
 			"type": "XML",
 			"id": "app"
 		},
-
 		"dependencies": {
 			"minUI5Version": "1.136.2",
 			"libs": {
@@ -40,26 +36,69 @@
 				"sap.m": {}
 			}
 		},
-
 		"handleValidation": true,
-
 		"contentDensities": {
 			"compact": true,
 			"cozy": true
 		},
-
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "employeemgm.i18n.i18n",
-					"supportedLocales": ["en", "de"],
+					"supportedLocales": [
+						"en",
+						"de"
+					],
 					"fallbackLocale": "en",
 					"async": true
 				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			},
+			"oEmpList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"oRoleList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"oDeptList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"userInfo": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"token": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
 			}
 		},
-
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",

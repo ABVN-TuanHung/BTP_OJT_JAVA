@@ -17,9 +17,11 @@ service EmployeesService {
     entity Departments as projection on my.Departments;
     entity Employees   as projection on my.Employees;
     function calculateSalary(employee : Employees) returns Integer;
-    function getUser()                             returns {
-        userId        : String;
-        authenticated : Boolean;
-        roles         : array of String;
+    function getUser()                             returns MySelf;
+
+    type MySelf {
+        userId : String;
+        jwt    : String;
+        roles  : array of String;
     };
 }

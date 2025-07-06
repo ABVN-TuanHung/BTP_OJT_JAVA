@@ -14,7 +14,7 @@ sap.ui.define(["./BaseController", "sap/m/MessageBox"], function (BaseController
 		},
         _onObjectMatched: function (oEvent) {
             const oView = this.getView();
-            const role = oView.getModel('role').getData();
+            const role = oView.getModel('userInfo').getData();
             const isAdmin = !!role.Admin;
             console.log('role',role);
             console.log('isAdmin',isAdmin);
@@ -73,7 +73,7 @@ sap.ui.define(["./BaseController", "sap/m/MessageBox"], function (BaseController
                 // New employee -> Create
                 const uuid = crypto.randomUUID();
                 oNewEmp.ID = uuid.slice(0, 21);
-                fetch(`/OJT/EmpSrv/Employees`, {
+                fetch(`odata/v4/OJT/EmpSrv/Employees`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ sap.ui.define(["./BaseController", "sap/m/MessageBox"], function (BaseController
                 }).catch(err => MessageToast.show('Network or server error:', err));
             } else {
                 // Existing employee -> Update
-                fetch(`/OJT/EmpSrv/Employees('${oNewEmp.ID}')`, {
+                fetch(`odata/v4/OJT/EmpSrv/Employees('${oNewEmp.ID}')`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ sap.ui.define(["./BaseController", "sap/m/MessageBox"], function (BaseController
             }
             const { role, department, ...oNewEmp } = employee;
             const body = { employee: oNewEmp }
-            const oResponse = await fetch(`/OJT/EmpSrv/calculateSalary`, {
+            const oResponse = await fetch(`odata/v4/OJT/EmpSrv/calculateSalary`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
