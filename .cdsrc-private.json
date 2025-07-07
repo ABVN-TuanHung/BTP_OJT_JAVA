@@ -1,0 +1,34 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "auth": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "org": "10f7befatrial",
+          "space": "dev",
+          "instance": "OJT_JAVA-uaa",
+          "key": "OJT_JAVA-uaa-key"
+        },
+        "kind": "xsuaa-auth",
+        "vcap": {
+          "name": "auth"
+        }
+      },
+      "db": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "org": "10f7befatrial",
+          "space": "dev",
+          "instance": "OJT_JAV",
+          "key": "OJT_JAV-key"
+        },
+        "kind": "hana-cloud",
+        "vcap": {
+          "name": "db"
+        }
+      }
+    }
+  }
+}

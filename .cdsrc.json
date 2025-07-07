@@ -1,0 +1,13 @@
+{
+  "requires": {
+    "[production]": {
+      "auth": "xsuaa"
+    },
+    "db": "hana",
+    "[hybrid]": {
+      "db": "hana"
+    },
+    "destinations": true,
+    "html5-runtime": true
+  }
+}

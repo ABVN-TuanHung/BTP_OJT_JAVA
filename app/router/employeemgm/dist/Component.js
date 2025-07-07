@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","employeemgm/model/models"],(e,t)=>{"use strict";return e.extend("employeemgm.Component",{metadata:{manifest:"json",interfaces:["sap.ui.core.IAsyncContentCreation"]},async init(){e.prototype.init.apply(this,arguments);this.setModel(t.createDeviceModel(),"device");this.getRouter().initialize();this.getRouter().initialize();const i=await t.createUserModel();const o=await t.createTokenModel();this.setModel(i,"userInfo");this.setModel(o,"token")}})});
+//# sourceMappingURL=Component.js.map

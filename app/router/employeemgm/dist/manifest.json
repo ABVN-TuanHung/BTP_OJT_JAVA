@@ -1,0 +1,164 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "employeemgm",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.1",
+      "toolsId": "e038c0cf-aecd-47a0-9bc6-eb8443705a9d"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/OJT/EmpSrv/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "employeemgm.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "oEmpList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"oRoleList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"oDeptList": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"userInfo": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			},
+			"token": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"data": {}
+				}
+			}
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "employeemgm.view",
+        "async": true,
+        "viewPath": "employeemgm.view"
+      },
+      "routes": [
+        {
+          "name": "Overview",
+          "pattern": ":?query:",
+          "target": "Overview"
+        },
+        {
+          "name": "Detail",
+          "pattern": "Detail",
+          "target": "Detail"
+        },
+        {
+          "name": "DetailId",
+          "pattern": "Detail/{id}",
+          "target": "Detail"
+        }
+      ],
+      "targets": {
+        "Overview": {
+          "id": "Overview",
+          "name": "Overview"
+        },
+        "Detail": {
+          "id": "Detail",
+          "name": "Detail"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "employeemgm.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

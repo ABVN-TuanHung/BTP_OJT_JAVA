@@ -1,0 +1,15 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer_JAV",
+      "description": "Viewer_JAV"
+    },
+    {
+      "name": "$XSAPPNAME.Admin_JAV",
+      "description": "Admin_JAV"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [],
+  "authorities-inheritance": false
+}
