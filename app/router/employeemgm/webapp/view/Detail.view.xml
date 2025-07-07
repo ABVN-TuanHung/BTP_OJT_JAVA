@@ -10,7 +10,7 @@
         id="DetailPage">
         <Button
             id="btnBack"
-            text="{formatter: 'formatter.formatValue', path: 'i18n>btnDetail'}"
+            text="Back"
             press=".onSeeListView"
             class="sapUiSmallMargin" />
 

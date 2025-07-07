@@ -1,0 +1,124 @@
+{
+  "value": [
+    {
+      "ID": "10000000-000000000001",
+      "firstName": "John",
+      "lastName": "Doe",
+      "dateOfBirth": "1990-05-12",
+      "gender": "M",
+      "email": "john.doe@example.com",
+      "hireDate": "2015-06-01",
+      "salary": 75000,
+      "role_ID": "b4c7f11d-2e77-48c6-bef0-7904c6e8c311",
+      "department_ID": "2c8f3cc5-2d45-4789-d3fb-56cdef210003"
+    },
+    {
+      "ID": "10000000-000000000002",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "dateOfBirth": "1988-09-23",
+      "gender": "F",
+      "email": "jane.smith@example.com",
+      "hireDate": "2012-09-01",
+      "salary": 88000,
+      "role_ID": "b4c7f11d-2e77-48c6-bef0-7904c6e8c311",
+      "department_ID": "1b7e2bb4-1c34-4678-c2ea-34bcdef10002"
+    },
+    {
+      "ID": "10000000-000000000003",
+      "firstName": "Michael",
+      "lastName": "Chan",
+      "dateOfBirth": "1992-03-11",
+      "gender": "M",
+      "email": "michael.chan@example.com",
+      "hireDate": "2018-03-15",
+      "salary": 72000,
+      "role_ID": "b4c7f11d-2e77-48c6-bef0-7904c6e8c311",
+      "department_ID": "2c8f3cc5-2d45-4789-d3fb-56cdef210003"
+    },
+    {
+      "ID": "10000000-000000000004",
+      "firstName": "Linda",
+      "lastName": "Nguyen",
+      "dateOfBirth": "1994-07-29",
+      "gender": "F",
+      "email": "linda.nguyen@example.com",
+      "hireDate": "2019-08-01",
+      "salary": 69000,
+      "role_ID": "b4c7f11d-2e77-48c6-bef0-7904c6e8c311",
+      "department_ID": "4ea05ee7-4f67-4901-f5bd-90ef43210005"
+    },
+    {
+      "ID": "10000000-000000000005",
+      "firstName": "David",
+      "lastName": "Lee",
+      "dateOfBirth": "1987-01-05",
+      "gender": "M",
+      "email": "david.lee@example.com",
+      "hireDate": "2010-04-10",
+      "salary": 95000,
+      "role_ID": "d1e2f33a-1a95-43c9-8f9d-28ab238ea621",
+      "department_ID": "1b7e2bb4-1c34-4678-c2ea-34bcdef10002"
+    },
+    {
+      "ID": "10000000-000000000006",
+      "firstName": "Sophia",
+      "lastName": "Wang",
+      "dateOfBirth": "1995-12-17",
+      "gender": "F",
+      "email": "sophia.wang@example.com",
+      "hireDate": "2020-02-01",
+      "salary": 67000,
+      "role_ID": "d1e2f33a-1a95-43c9-8f9d-28ab238ea621",
+      "department_ID": "4ea05ee7-4f67-4901-f5bd-90ef43210005"
+    },
+    {
+      "ID": "10000000-000000000007",
+      "firstName": "Robert",
+      "lastName": "Klein",
+      "dateOfBirth": "1991-06-25",
+      "gender": "M",
+      "email": "robert.klein@example.com",
+      "hireDate": "2016-10-10",
+      "salary": 80000,
+      "role_ID": "d1e2f33a-1a95-43c9-8f9d-28ab238ea621",
+      "department_ID": "2c8f3cc5-2d45-4789-d3fb-56cdef210003"
+    },
+    {
+      "ID": "10000000-000000000008",
+      "firstName": "Alice",
+      "lastName": "White",
+      "dateOfBirth": "1989-11-13",
+      "gender": "F",
+      "email": "alice.white@example.com",
+      "hireDate": "2014-01-15",
+      "salary": 84000,
+      "role_ID": "f2a1a15d-445e-43b1-88de-e1107f8a0f2e",
+      "department_ID": "1b7e2bb4-1c34-4678-c2ea-34bcdef10002"
+    },
+    {
+      "ID": "10000000-000000000009",
+      "firstName": "Chris",
+      "lastName": "Kim",
+      "dateOfBirth": "1993-08-20",
+      "gender": "M",
+      "email": "chris.kim@example.com",
+      "hireDate": "2017-07-20",
+      "salary": 71000,
+      "role_ID": "f2a1a15d-445e-43b1-88de-e1107f8a0f2e",
+      "department_ID": "2c8f3cc5-2d45-4789-d3fb-56cdef210003"
+    },
+    {
+      "ID": "10000000-000000000010",
+      "firstName": "Emma",
+      "lastName": "Garcia",
+      "dateOfBirth": "1996-04-02",
+      "gender": "F",
+      "email": "emma.garcia@example.com",
+      "hireDate": "2021-05-01",
+      "salary": 66000,
+      "role_ID": "f2a1a15d-445e-43b1-88de-e1107f8a0f2e",
+      "department_ID": "4ea05ee7-4f67-4901-f5bd-90ef43210005"
+    }
+  ]
+}

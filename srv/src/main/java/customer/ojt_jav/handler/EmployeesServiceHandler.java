@@ -21,8 +21,10 @@ import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 import com.sap.cds.services.persistence.PersistenceService;
 import com.sap.cds.services.request.UserInfo;
+import com.sap.cds.services.ServiceException;
 
 import cds.gen.employeesservice.Employees;
+import cds.gen.employeesservice.Employees_;
 import cds.gen.employeesservice.EmployeesService_;
 import cds.gen.employeesservice.Roles_;
 import cds.gen.employeesservice.GetUserContext;
@@ -43,11 +45,22 @@ public class EmployeesServiceHandler implements EventHandler {
 
     @On(event = "calculateSalary")
     public void onCalculateSalary(CalculateSalaryContext entry) {
-        Object oHireDate = entry.get(Employees.HIRE_DATE);
-        Object oRoleId = entry.get(Employees.ROLE_ID);
-
+        String ID = entry.getId();
+        var result = persistenceService.run(
+                Select
+                .from(Employees_.CDS_NAME)
+                .where(r -> r.get("ID").eq(ID))
+            ).single();
+        if (result == null) {
+            logger.error("Employee with id {} does not exist", ID);
+            throw new ServiceException("Emlpoyee not found...");
+        }
+        Object oHireDate = result.get(Employees.HIRE_DATE);
+        Object oRoleId = result.get(Employees.ROLE_ID);
+ 
         if (oHireDate == null || oRoleId == null) {
             logger.error("Missing Required parameter...");
+            throw new ServiceException("Missing Required parameter...");
         }
         
         LocalDate hireDate = LocalDate.parse(oHireDate.toString());
@@ -68,9 +81,8 @@ public class EmployeesServiceHandler implements EventHandler {
             // Calculate salary with added bonus
             BigDecimal salary = baseSalary.add(bonus);
 
-            // Update the salary field
-            entry.put(Employees.SALARY, salary);
-            logger.info("Updated entry: {}", entry);
+            // Return calculated salary
+            entry.setResult(salary);
         }
     }
 
@@ -103,6 +115,9 @@ public class EmployeesServiceHandler implements EventHandler {
         JwtTokenAuthenticationInfo authInfo = context.getAuthenticationInfo().as(JwtTokenAuthenticationInfo.class);
 		XsuaaUserInfo userInfo = context.getUserInfo().as(XsuaaUserInfo.class);
 		List<String> roles = new ArrayList<String>(userInfo.getRoles());
+        logger.info("context: {}", context);
+        logger.info("authInfo: {}", authInfo.getToken());
+        logger.info("userInfo: {}", userInfo.getRoles());
 		// set result
 		MySelf me = MySelf.create();
 		me.setUserId(userInfo.getEmail());

@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:8080/odata/v4
+@token = eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vMTBmN2JlZmF0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktZGNjNjQzYmMwZSIsInR5cCI6IkpXVCIsImppZCI6ICJIb0NTSm9GQzJObWlMSk03UngzLzBXN2UzNjNYOFg4NWcyb1Q4ZFpIOVlvPSJ9.eyJqdGkiOiI2M2E5YTcwNDUzZDc0MTVjYjk3ZjE3NWQxMDQ2M2Y0YSIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI3Mjk3MmU4Mi03ZTdhLTQ5ODQtODYzYi05ZDNiYWY2ZTZiMjAiLCJ6ZG4iOiIxMGY3YmVmYXRyaWFsIn0sInN1YiI6InNiLU9KVF9KQVYtMTBmN2JlZmF0cmlhbC1kZXYhdDQ1NjM5MiIsImF1dGhvcml0aWVzIjpbInVhYS5yZXNvdXJjZSJdLCJzY29wZSI6WyJ1YWEucmVzb3VyY2UiXSwiY2xpZW50X2lkIjoic2ItT0pUX0pBVi0xMGY3YmVmYXRyaWFsLWRldiF0NDU2MzkyIiwiY2lkIjoic2ItT0pUX0pBVi0xMGY3YmVmYXRyaWFsLWRldiF0NDU2MzkyIiwiYXpwIjoic2ItT0pUX0pBVi0xMGY3YmVmYXRyaWFsLWRldiF0NDU2MzkyIiwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInJldl9zaWciOiJiYjJjNWQ4NCIsImlhdCI6MTc1MTg2MjM2NSwiZXhwIjoxNzUxOTA1NTY1LCJpc3MiOiJodHRwczovLzEwZjdiZWZhdHJpYWwuYXV0aGVudGljYXRpb24udXMxMC5oYW5hLm9uZGVtYW5kLmNvbS9vYXV0aC90b2tlbiIsInppZCI6IjcyOTcyZTgyLTdlN2EtNDk4NC04NjNiLTlkM2JhZjZlNmIyMCIsImF1ZCI6WyJ1YWEiLCJzYi1PSlRfSkFWLTEwZjdiZWZhdHJpYWwtZGV2IXQ0NTYzOTIiXX0.Uu1rCYi-hhSIqhhm4-85c4WnUDvpM9cH9aEOkkT4mDlMEQXPd9F8k3W4BwzAJ2X_KRRIfoBRoALFPQgXncHoUSVZnVtH5P_p0WWjbKiuDqUfXNVMzcfXXFGlNCT8uSBwLb-vXrFCCBmH36XZyelnk3yYQAH_diCB8Ed0BTR1vDI0l_IJC5fJBRJaKz6rSCqsKLq0elFxeMaU-Tu30_VjapkmTqh_FnmpljAzspPbecMeExC0ET_f3RS5Ei0Kzp911vKf0lzdCwmJ0nmEdrpesQi1iN0aLLCHa5j5eWDYguPy-46z9yFsbP2zR9q-O-raoCRrKPL8qfP5cFj4XmJrpA
+
+###
+POST https://10f7befatrial.authentication.us10.hana.ondemand.com/oauth/token
+Authorization: Basic c2ItT0pUX0pBVi0xMGY3YmVmYXRyaWFsLWRldiF0NDU2MzkyOjVlMjUxMjkwLWRjYWItNGZkYi04NGY1LTI3ZGJjNmU2NDgyZiRRVmFxVkFCcF9zQWtmZkRONmR6UU5xT2dnQllHZjJhbGZNdzlHbV9wVUZNPQ==
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+
+### GET ALL EMPLOYEES
+GET  {{baseUrl}}/OJT/EmpSrv/Employees
+Authorization:  Bearer {{token}}
+
+### GET A EMPLOYEE
+GET  {{baseUrl}}/OJT/EmpSrv/Employees(7f3e5f60-9562-44d7-8b2b-cfcbf0876ef2)
+Authorization:  Bearer {{token}}
+
+### POST
+POST  {{baseUrl}}/OJT/EmpSrv/Employees
+Authorization:  Bearer {{token}}
+Content-Type: application/json
+
+{
+  "ID": "7f3e5f60-9562-44d7-8b2b-cfcbf0876ef2",
+  "firstName": "Twan",
+  "lastName": "Hung",
+  "dateOfBirth": "2001-05-12",
+  "gender": "M",
+  "email": "Twan.hun@example.com",
+  "hireDate": "2015-06-01",
+  "salary": 75000,
+  "role_ID": "b4c7f11d-2e77-48c6-bef0-7904c6e8c311",
+  "department_ID": "2c8f3cc5-2d45-4789-d3fb-56cdef210003"
+}
+
+### GET User
+GET  {{baseUrl}}/OJT/EmpSrv/getUser
+Authorization:  Bearer {{token}}
+Content-Type: application/json
+
+### POST
+GET  {{baseUrl}}/OJT/EmpSrv/calculateSalary(ID='7f3e5f60-9562-44d7-8b2b-cfcbf0876ef2')
+Authorization:  Bearer {{token}}
+Content-Type: application/json
